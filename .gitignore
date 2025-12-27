@@ -1,26 +1,61 @@
-# Virtual environment
+# =========================
+# Virtual Environments
+# =========================
 venv/
+backend_venv/
 .env/
 
-# Python cache
+# =========================
+# Python Cache / Compiled
+# =========================
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# OS files
-.DS_Store
-Thumbs.db
+# =========================
+# Databases
+# =========================
+*.db
+*.sqlite3
 
-# Face recognition data (DO NOT UPLOAD)
+# =========================
+# Face Recognition Data (PRIVATE)
+# =========================
 ai/known_faces/
 ai/face_db.pkl
 *.pkl
 
+# =========================
+# Media Files (Large / Demo)
+# =========================
+videos/*.mp4
+videos/*.avi
+videos/*.mov
+
+# =========================
 # Logs
+# =========================
 *.log
 
-# IDE / Editor
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# IDE / Editor Settings
+# =========================
 .vscode/
 .idea/
 
+# =========================
 # Jupyter
+# =========================
 .ipynb_checkpoints/
+
+# =========================
+# Secrets
+# =========================
+.env
