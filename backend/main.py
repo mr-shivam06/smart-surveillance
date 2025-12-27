@@ -18,12 +18,12 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI(title="AI-Based Smart Surveillance Backend")
 
 # ================= ROOT =================
-@app.get("/")
+@app.get("/", tags=["System"])
 def root():
     return {"status": "Backend running"}
 
 # ================= AUTH =================
-@app.post("/register")
+@app.post("/register", tags=["Auth"])
 def register(
     username: str,
     password: str,
@@ -44,7 +44,7 @@ def register(
     db.commit()
     return {"status": "User registered successfully"}
 
-@app.post("/login")
+@app.post("/login", tags=["Auth"])
 def login(
     form_data: OAuth2PasswordRequestForm = Depends(),
     db: Session = Depends(get_db)
@@ -62,12 +62,12 @@ def login(
         "token_type": "bearer"
     }
 
-@app.get("/protected")
+@app.get("/protected", tags=["Auth"])
 def protected(user=Depends(get_current_user)):
     return {"message": f"Hello {user.username}"}
 
 # ================= CAMERA REGISTRY =================
-@app.post("/cameras")
+@app.post("/cameras", tags=["Cameras"])
 def add_camera(
     name: str,
     source: str,
@@ -79,22 +79,26 @@ def add_camera(
     db.commit()
     return {"status": "Camera added"}
 
-@app.get("/cameras")
+@app.get("/cameras", tags=["Cameras"])
 def list_cameras(
     db: Session = Depends(get_db),
     user=Depends(get_current_user)
 ):
     return db.query(models.Camera).all()
 
-@app.delete("/cameras/{camera_id}")
+@app.delete("/cameras/{camera_id}", tags=["Cameras"])
 def delete_camera(
     camera_id: int,
     db: Session = Depends(get_db),
     user=Depends(get_current_user)
 ):
-    cam = db.query(models.Camera).filter(models.Camera.id == camera_id).first()
+    cam = db.query(models.Camera).filter(
+        models.Camera.id == camera_id
+    ).first()
+
     if not cam:
-        return {"error": "Camera not found"}
+        raise HTTPException(status_code=404, detail="Camera not found")
+
     db.delete(cam)
     db.commit()
     return {"status": "Camera removed"}

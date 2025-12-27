@@ -1,24 +1,36 @@
-# Smart Surveillance System (AI-Based)
+# AI-Based Multi-Camera Person & Object Tracking System (Simulation)
 
-An AI-powered surveillance system capable of:
-- Real-time object detection
-- Object tracking with unique IDs
-- Face recognition for registered users
-- FPS monitoring
-- Ethical, simulation-based deployment
+## 📌 Overview
+This project is an AI-powered surveillance system that detects, tracks, and identifies people and objects across multiple camera feeds.  
+It is built as a **simulation** for academic and internship purposes.
 
-## Features
-- YOLOv8 object detection
-- ByteTrack-based object tracking
-- Face recognition using facial embeddings
-- Multi-module architecture
-- Secure and consent-based design
+## 🎯 Features
+- Multi-camera support (video files, webcam, mobile IP camera)
+- Person & object detection using YOLOv8
+- Face recognition (Known / Unknown)
+- Secure backend with JWT authentication
+- Camera add / list / delete APIs
+- Scalable architecture
 
-## Tech Stack
+## 🛠️ Tech Stack
+**AI / CV**
 - Python
 - OpenCV
-- YOLOv8 (Ultralytics)
-- face_recognition (dlib)
-- NumPy
+- YOLOv8
+- face_recognition
 
-## Project Structure
+**Backend**
+- FastAPI
+- JWT Authentication
+- SQLite
+- SQLAlchemy
+
+**Frontend (Planned)**
+- React
+- Axios
+
+## 🚀 How to Run
+
+### Backend
+```bash
+uvicorn backend.main:app --reload
