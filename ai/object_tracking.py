@@ -62,7 +62,7 @@ while True:
         2
     )
 
-    cv2.imshow("Day 2 - Object Tracking", frame)
+    cv2.imshow("Object Tracking", frame)
 
     # Exit on Q or ESC
     if cv2.waitKey(1) & 0xFF in [ord('q'), 27]:
